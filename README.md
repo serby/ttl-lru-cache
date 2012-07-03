@@ -1,6 +1,6 @@
 # ttl-lru-cache - A fast in memory cache with TTL and LRU support
 
-[![build status](https://secure.travis-ci.org/serby/###.png)](http://travis-ci.org/serby/ttl-lru-cache)
+[![build status](https://secure.travis-ci.org/serby/ttl-lru-cache.png)](http://travis-ci.org/serby/ttl-lru-cache)
 
 ## Installation
 
