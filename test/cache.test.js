@@ -1,4 +1,4 @@
-var createCache = require('../lib/cache')
+var createCache = require('..')
   , should = require('should')
   ;
 
