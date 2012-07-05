@@ -1,7 +1,7 @@
 { "author": "Paul Serby <paul@serby.net>"
 , "name": "ttl-lru-cache"
 , "description": "A fast in memory cache with TTL and LRU support"
-, "version": "0.0.1"
+, "version": "0.0.2"
 , "tags":
   [ "cache"
   , "lru"
@@ -10,7 +10,7 @@
   { "type": "git"
   , "url": "git@github.com:serby/ttl-lru-cache"
   }
-, "main": ""
+, "main": "lib/cache.js"
 , "scripts":
   { "test": "mocha -r should"
   }
