@@ -28,6 +28,15 @@ setTimeout(function() {
 // b = undefined
 }, 2000);
 
+// Events
+cache.set('c', 'Hello', 1000); // Add TTL in ms
+cache.on('expired', function(key, value){ console.log('Expired', key, 'who had the value:', value); });
+
+setTimeout(function() {
+  var c = cache.get('c');
+  // => Expired c who had the value: Hello
+}, 2000);
+
 ```
 
 ## Benchmark against lru-cache
