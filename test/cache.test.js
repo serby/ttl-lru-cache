@@ -34,6 +34,17 @@ describe('ttl-lru-cache', function() {
         done();
       }, 15);
     });
+    it('should emit when TTL has been exceeded', function(done) {
+      var memory = createCache();
+      var emitted = 0;
+      memory.on('expired', function(){ emitted++; });
+      memory.set('test', 'hello', 10);
+      setTimeout(function() {
+        should.equal(memory.get('test'), undefined);
+        should.equal(emitted, 1);
+        done();
+      }, 15);
+    });
   });
 
   describe('#set()', function() {
@@ -135,6 +146,19 @@ describe('ttl-lru-cache', function() {
         memory.size().should.eql(0);
         done();
       }, 2);
+    });
+
+    it('should emit expired after gc when something has expired', function(done) {
+      var memory = createCache();
+      var emitted = 0;
+      memory.on('expired', function(){ emitted++; });
+      memory.set('test', 'hello', 1);
+      memory.size().should.eql(1);
+      setTimeout(function() {
+        memory.size().should.eql(0);  // internally triggers #garbageCollection
+        should.equal(emitted, 1);
+        done();
+      }, 15);
     });
 
     it('should not exceed cache length', function() {
