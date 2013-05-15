@@ -7,7 +7,7 @@ function time(fn) {
 }
 
 var tests = {}
-  , large = 10000
+  , large = 30000
   , types =
   [
     { name: 'Large count and large max length'
