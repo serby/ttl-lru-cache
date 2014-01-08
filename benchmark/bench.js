@@ -1,8 +1,8 @@
 function time(fn) {
 
-  var start = Date.now();
-  fn();
-  return Date.now() - start;
+  var start = Date.now()
+  fn()
+  return Date.now() - start
 
 }
 
@@ -26,27 +26,27 @@ var tests = {}
     , count: large
     , maxLength: Math.round(large * 0.75)
     }
-  ];
+  ]
 
-for (var type in types) {
-  var values = types[type];
+types.forEach(function(values) {
   tests['ttl-lru-cache ' + values.name] = require('./engine.bench')(values.count, function() {
-    return require('../lib/cache')({ maxLength: values.maxLength, gcInterval: 10000 });
-  });
+    return require('../lib/cache')({ maxLength: values.maxLength, gcInterval: 10000 })
+  })
   tests['lru-cache ' + values.name] = require('./engine.bench')(values.count, function() {
     var LRU = require('lru-cache')
-      , cache = LRU(values.maxLength);
-    return cache;
-  });
-}
+      , cache = LRU(values.maxLength)
+    return cache
+  })
+})
+
 
 for (var key in tests) {
-  console.log(key);
+  console.log(key)
   for (var subKey in tests[key]) {
     if (subKey === 'end') {
-      tests[key][subKey]();
+      tests[key][subKey]()
     } else {
-      console.log(subKey, time(tests[key][subKey]));
+      console.log(subKey, time(tests[key][subKey]))
     }
   }
 }

@@ -1,28 +1,37 @@
-{ "author": "Paul Serby <paul@serby.net>"
-, "name": "ttl-lru-cache"
-, "description": "A fast in memory cache with TTL and LRU support"
-, "version": "0.0.2"
-, "tags":
-  [ "cache"
-  , "lru"
-  , "ttl"]
-, "repository":
-  { "type": "git"
-  , "url": "git@github.com:serby/ttl-lru-cache"
-  }
-, "main": "lib/cache.js"
-, "scripts":
-  { "test": "mocha -r should"
-  }
-, "engines":
-  { "node": ">=0.6.0"
-  }
-, "dependencies":
-  { "lodash": "*"
-  }
-, "devDependencies":
-  { "mocha": "*"
-  , "should": "*"
-  , "lru-cache": "*"
+{
+  "author": "Paul Serby <paul@serby.net>",
+  "name": "ttl-lru-cache",
+  "description": "A fast in memory cache with TTL and LRU support",
+  "version": "0.0.2",
+  "tags": [
+    "cache",
+    "lru",
+    "ttl"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:serby/ttl-lru-cache"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/jshint . --reporter=./node_modules/jshint-full-path/index.js",
+    "pretest": "npm run-script lint",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec -r should",
+    "posttest": "./node_modules/.bin/istanbul check-coverage && rm -rf coverage",
+    "prepublish": "npm test && npm prune"
+  },
+  "main": "lib/cache.js",
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "dependencies": {
+    "lodash.assign": "~2.4.1"
+  },
+  "devDependencies": {
+    "mocha": "1",
+    "should": "2",
+    "lru-cache": "*",
+    "istanbul": "~0.2.1",
+    "jshint": "~2.4.0",
+    "jshint-full-path": "~1.1.1"
   }
 }

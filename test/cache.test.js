@@ -69,20 +69,19 @@ describe('ttl-lru-cache', function() {
         , a = { a: 1 }
         , b = { ref: a }
 
-
       a.ref = b
       memory.set('a', a)
       memory.get('a').ref.should.eql(b)
     })
 
     it('should not allow undefined key', function() {
-      var memory = createCache()
+      var memory = createCache();
       (function() {
         memory.set(undefined, '')
       }).should.throwError('Invalid key undefined')
     })
 
-    it('should remove least recently used from the cache first', function() {
+    it('should remove least recently used from the cache first base on write', function() {
 
       var memory = createCache({ maxLength: 3 })
 
@@ -94,6 +93,21 @@ describe('ttl-lru-cache', function() {
       memory.size().should.eql(3)
       memory.set('d', 'd')
       memory.size().should.eql(3)
+      true.should.eql(memory.get('a') === undefined)
+    })
+
+    it.skip('should remove least recently used from the cache first base on read', function() {
+
+      var memory = createCache({ maxLength: 3, lruWriteCleanUp: 1 })
+
+      memory.set('a', 'a')
+      memory.set('b', 'b')
+      memory.set('c', 'c')
+      memory.get('a')
+      memory.get('a').should.eql('a')
+      memory.set('d', 'd')
+      memory.gc()
+      true.should.eql(memory.get('b') === undefined)
     })
 
     it('should not increase the length when overwriting a value', function() {
