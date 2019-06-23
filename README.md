@@ -1,6 +1,6 @@
 # ttl-lru-cache - A fast in memory cache with TTL and LRU support
 
-[![build status](https://secure.travis-ci.org/serby/ttl-lru-cache.png)](http://travis-ci.org/serby/ttl-lru-cache)
+[![build status](https://secure.travis-ci.org/serby/ttl-lru-cache.png)](http://travis-ci.org/serby/ttl-lru-cache) [![Greenkeeper badge](https://badges.greenkeeper.io/serby/ttl-lru-cache.svg)](https://greenkeeper.io/)
 
 ## Installation
 
